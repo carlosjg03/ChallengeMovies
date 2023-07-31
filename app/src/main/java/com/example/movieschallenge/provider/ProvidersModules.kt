@@ -1,5 +1,7 @@
 package com.example.movieschallenge.provider
 
+import com.example.movieschallenge.save.SaveData
+import com.example.movieschallenge.save.SaveDataContract
 import com.example.movieschallenge.services.API
 import com.example.movieschallenge.services.best_movies.BestMoviesContract
 import com.example.movieschallenge.services.best_movies.BestMoviesImp
@@ -16,6 +18,6 @@ val providerModule = module {
     factory { API.getServices<BestMoviesServices>() }
     single<RatedContract> { RatedImp(get()) }
     single<BestMoviesContract> { BestMoviesImp(get()) }
-    single<LocationsContract> { LocationsImp() }
+    single<LocationsContract> { LocationsImp(get()) }
     factory { ViewModelFactory(get(),get(),get()) }
 }
