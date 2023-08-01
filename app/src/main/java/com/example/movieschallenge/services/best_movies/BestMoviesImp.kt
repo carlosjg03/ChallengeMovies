@@ -11,20 +11,22 @@ class BestMoviesImp(
     private val saveDataContract: SaveDataContract,
     private val service: BestMoviesServices) : BestMoviesContract{
     override suspend fun getMostPopularMovies(page: Int): Result<RatedMoviesModel> {
-        return getItems(service.getMostPopularMovies(page),page,"MostPopularMovies.json")
+        return getItems({ service.getMostPopularMovies(page) },page,"MostPopularMovies.json")
+
     }
     override suspend fun getTopRatedMovies(page: Int): Result<RatedMoviesModel> {
-        return getItems(service.getTopRatedMovies(page),page,"TopRatedMovies.json")
+        return  getItems({ service.getTopRatedMovies(page) },page,"TopRatedMovies.json")
     }
 
     override suspend fun getRecommendationsMovies(page: Int): Result<RatedMoviesModel> {
-        return getItems(service.getRecommendationsMovies(page),page,"RecommendationsMovies.json")
+        return getItems({ service.getRecommendationsMovies(page) },page,"RecommendationsMovies.json")
+
     }
 
-    private fun getItems(service:Response<RatedMoviesModel>,page: Int, nameStorage:String) : Result<RatedMoviesModel>{
+    private suspend fun getItems(service: suspend ()->Response<RatedMoviesModel>,page: Int, nameStorage:String) : Result<RatedMoviesModel>{
         val savedMovies = getSavedItems(nameStorage)
         try {
-            val response = service
+            val response = service.invoke()
             val body = response.body()
             if (response.isSuccessful && body!=null) {
                 if(page!=1) {

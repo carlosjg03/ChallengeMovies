@@ -13,13 +13,13 @@ class RatedImp(
     private val service: RatedServices
 ) :RatedContract{
     override suspend fun invoke(page: Int): Result<RatedMoviesModel> {
-        return getItems(service.getRatedMovies(page),page,"RatedMovies.json")
+        return getItems({ service.getRatedMovies(page) }, page, "RatedMovies.json")
     }
 
-    private fun getItems(service: Response<RatedMoviesModel>, page: Int, nameStorage:String) : Result<RatedMoviesModel>{
+    private suspend fun getItems(service: suspend ()->Response<RatedMoviesModel>, page: Int, nameStorage:String) : Result<RatedMoviesModel>{
         val savedMovies = getSavedItems(nameStorage)
         try {
-            val response = service
+            val response = service.invoke()
             val body = response.body()
             if (response.isSuccessful && body!=null) {
                 if(page!=1) {
