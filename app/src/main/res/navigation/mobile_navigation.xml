@@ -22,4 +22,8 @@
         android:name="com.example.movieschallenge.ui.ubicaciones.UbicacionesFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_ubicaciones" />
+    <fragment
+        android:id="@+id/picturesFragment"
+        android:name="com.example.movieschallenge.ui.pictures.PicturesFragment"
+        android:label="PicturesFragment" />
 </navigation>
