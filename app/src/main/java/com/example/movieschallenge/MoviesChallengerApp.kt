@@ -30,6 +30,5 @@ class MoviesChallengerApp:Application() {
             )
             koin.createRootScope()
         }
-        LocationAccess.init(applicationContext)
     }
 }

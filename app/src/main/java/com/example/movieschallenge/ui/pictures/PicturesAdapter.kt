@@ -2,7 +2,9 @@ package com.example.movieschallenge.ui.pictures
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.opengl.Visibility
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -68,6 +70,9 @@ class PicturesAdapter() : RecyclerView.Adapter<PicturesAdapter.PicturesViewHolde
                         .load(data.second)
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .apply(options).into(binding.iv2)
+                    binding.iv2.visibility = View.VISIBLE
+                } else {
+                    binding.iv2.visibility = View.INVISIBLE
                 }
             }
         }
