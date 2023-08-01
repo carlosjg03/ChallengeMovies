@@ -4,5 +4,7 @@ import com.example.movieschallenge.models.RatedMoviesModel
 import com.example.movieschallenge.models.Result
 
 interface BestMoviesContract {
-    suspend operator fun invoke(page:Int): Result<RatedMoviesModel>
+    suspend fun getMostPopularMovies(page:Int): Result<RatedMoviesModel>
+    suspend fun getTopRatedMovies(page:Int): Result<RatedMoviesModel>
+    suspend fun getRecommendationsMovies(page:Int): Result<RatedMoviesModel>
 }

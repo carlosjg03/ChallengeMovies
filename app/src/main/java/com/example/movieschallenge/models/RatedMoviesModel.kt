@@ -6,7 +6,7 @@ data class RatedMoviesModel(
     @SerializedName("page") val page: Int = 0,
     @SerializedName("total_pages") val totalPages: Int = 0,
     @SerializedName("total_results") val totalResults: Int = 0,
-    @SerializedName("results") val results: List<RatedMovieModel> = listOf(),
+    @SerializedName("results") val results: MutableList<RatedMovieModel> = mutableListOf(),
 )
 
 data class RatedMovieModel(
@@ -25,4 +25,8 @@ data class RatedMovieModel(
     @SerializedName("vote_average") val vote_average: Double = 0.0,
     @SerializedName("vote_count") val vote_count: Int = 0,
     @SerializedName("rating") val rating: Int = 0,
-)
+){
+    override fun equals(other: Any?): Boolean {
+        return other is RatedMovieModel && other.id==this.id
+    }
+}

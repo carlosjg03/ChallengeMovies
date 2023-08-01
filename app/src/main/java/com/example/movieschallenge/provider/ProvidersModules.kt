@@ -16,8 +16,8 @@ import org.koin.dsl.module
 val providerModule = module {
     factory { API.getServices<RatedServices>() }
     factory { API.getServices<BestMoviesServices>() }
-    single<RatedContract> { RatedImp(get()) }
-    single<BestMoviesContract> { BestMoviesImp(get()) }
+    single<RatedContract> { RatedImp(get(),get()) }
+    single<BestMoviesContract> { BestMoviesImp(get(),get()) }
     single<LocationsContract> { LocationsImp(get()) }
     factory { ViewModelFactory(get(),get(),get()) }
 }

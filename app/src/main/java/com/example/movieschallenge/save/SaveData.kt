@@ -27,12 +27,14 @@ class SaveData(
     }
 
     override fun getData(nameFile:String):String{
-        val newFile = File(path,nameFile)
-        val br = BufferedReader(FileReader(newFile))
+        val file = File(path,nameFile)
         var returnStr = ""
-        var st: String?
-        while (br.readLine().also { st = it } != null) // Print the string
-            returnStr+=st
+        if(file.exists()) {
+            val br = BufferedReader(FileReader(file))
+            var st: String?
+            while (br.readLine().also { st = it } != null) // Print the string
+                returnStr += st
+        }
         return returnStr
     }
 }

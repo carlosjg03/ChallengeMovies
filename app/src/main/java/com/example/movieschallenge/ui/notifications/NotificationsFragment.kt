@@ -39,15 +39,14 @@ class NotificationsFragment : Fragment() {
         mapFragment.getMapAsync { googleMap ->
             viewModel.getLocations()
             viewModel.locations.observe(viewLifecycleOwner) { locations ->
+                googleMap.clear()
                 locations.forEachIndexed{position, point ->
                     val markerOptions = MarkerOptions()
                     markerOptions.position(LatLng(point.lat,point.lng))
                     markerOptions.title(point.date)
-                    googleMap.clear()
                     googleMap.addMarker(markerOptions)
                     if(position==locations.size-1){
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(point.lat,point.lng), 10f))
-
                     }
                 }
 
