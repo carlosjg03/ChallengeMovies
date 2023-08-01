@@ -42,5 +42,13 @@ Captura de peliculas
 
 Captura de reseñas
 
-
 ![App Reseñas](https://drive.google.com/uc?export=view&id=1Y-r0Sob2ZpKVijXqJWdk5F-D2Bh8qb1T)
+
+Captura de Storage
+
+![App Reseñas](https://drive.google.com/uc?export=view&id=1-PNRExlblMwmiFLs1NHEvBj5vtSfB_WA)
+
+Captura de FireStore
+
+![App Reseñas](https://drive.google.com/uc?export=view&id=1lHP3_HaMzDzGaQ5eNLLO14nM5sO7awUL)
+
