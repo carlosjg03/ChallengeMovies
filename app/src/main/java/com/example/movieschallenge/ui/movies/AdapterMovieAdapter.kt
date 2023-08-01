@@ -1,4 +1,4 @@
-package com.example.movieschallenge.ui.home
+package com.example.movieschallenge.ui.movies
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,11 +8,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.movieschallenge.R
-import com.example.movieschallenge.databinding.ItemRatedBinding
+import com.example.movieschallenge.databinding.HorizontalMovieItemBinding
 import com.example.movieschallenge.models.RatedMovieModel
 
-class AdapterRated(val loadMoreItems: ()->Unit) :
-    RecyclerView.Adapter<AdapterRated.MovieViewHolder>() {
+
+class AdapterMovieAdapter(val onClick: (movie: RatedMovieModel)->Unit,val loadMoreItems: ()->Unit) :
+    RecyclerView.Adapter<AdapterMovieAdapter.MovieViewHolder>() {
     private val items: MutableList<RatedMovieModel> = arrayListOf()
 
     fun putMovies(itemsToPut: List<RatedMovieModel>){
@@ -23,7 +24,7 @@ class AdapterRated(val loadMoreItems: ()->Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemRatedBinding.inflate(layoutInflater, parent, false)
+        val binding = HorizontalMovieItemBinding.inflate(layoutInflater, parent, false)
         return MovieViewHolder(binding)
     }
 
@@ -31,28 +32,25 @@ class AdapterRated(val loadMoreItems: ()->Unit) :
         if(position == items.size-1){
             loadMoreItems.invoke()
         }
-        holder.bind(items[position])
+        holder.bind(items[position],onClick)
     }
 
     override fun getItemCount() = items.size
 
-    class MovieViewHolder(val binding: ItemRatedBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MovieViewHolder(val binding: HorizontalMovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("ResourceAsColor")
-        fun bind(data: RatedMovieModel) {
+        fun bind(data: RatedMovieModel,  onClick: (movie: RatedMovieModel) -> Unit) {
             binding.apply {
                 val options: RequestOptions = RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.ic_movie)
                     .error(R.drawable.ic_error)
 
-                Glide.with(binding.root.context).clear(binding.includeMovie.ivMovie)
+                Glide.with(binding.root.context).clear(binding.ivMovie)
                 Glide.with(binding.root.context)
                     .load("https://image.tmdb.org/t/p/original"+data.poster_path)
                     .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .apply(options).into(binding.includeMovie.ivMovie)
-                tvTitle.text = data.title
-                tvDescription.text = data.overview
-                ratingBar.rating = data.rating.toFloat()/2
+                    .apply(options).into(binding.ivMovie)
             }
         }
     }

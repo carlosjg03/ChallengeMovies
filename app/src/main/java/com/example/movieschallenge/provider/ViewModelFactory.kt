@@ -1,14 +1,13 @@
 package com.example.movieschallenge.provider
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.movieschallenge.services.best_movies.BestMoviesContract
 import com.example.movieschallenge.services.locations.LocationsContract
 import com.example.movieschallenge.services.rated.RatedContract
-import com.example.movieschallenge.ui.dashboard.DashboardViewModel
-import com.example.movieschallenge.ui.home.HomeViewModel
-import com.example.movieschallenge.ui.notifications.NotificationsViewModel
+import com.example.movieschallenge.ui.movies.MoviesViewModel
+import com.example.movieschallenge.ui.rated.RatedViewModel
+import com.example.movieschallenge.ui.ubicaciones.UbicacionesViewModel
 
 class ViewModelFactory(
     private val ratedContract: RatedContract,
@@ -18,13 +17,13 @@ class ViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return with(modelClass) {
             when {
-                isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(
+                isAssignableFrom(RatedViewModel::class.java) -> RatedViewModel(
                     ratedContract,
                 )
-                isAssignableFrom(NotificationsViewModel::class.java) -> NotificationsViewModel(
+                isAssignableFrom(UbicacionesViewModel::class.java) -> UbicacionesViewModel(
                     locationsContract,
                 )
-                isAssignableFrom(DashboardViewModel::class.java) -> DashboardViewModel(
+                isAssignableFrom(MoviesViewModel::class.java) -> MoviesViewModel(
                     bestMoviesContract,
                 )
                 else -> throw IllegalArgumentException("Unknown ViewModel class you must add it")

@@ -1,4 +1,4 @@
-package com.example.movieschallenge.ui.home
+package com.example.movieschallenge.ui.rated
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import com.example.movieschallenge.models.Result
 import com.example.movieschallenge.services.rated.RatedContract
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+class RatedViewModel(
     private val ratedContract: RatedContract,
 ) : ViewModel() {
     private var pageratedMovies = 0

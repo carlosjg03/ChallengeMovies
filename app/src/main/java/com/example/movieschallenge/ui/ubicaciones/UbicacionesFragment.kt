@@ -1,4 +1,4 @@
-package com.example.movieschallenge.ui.notifications
+package com.example.movieschallenge.ui.ubicaciones
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.movieschallenge.R
-import com.example.movieschallenge.databinding.FragmentNotificationsBinding
+import com.example.movieschallenge.databinding.FragmentUbicacionesBinding
 import com.example.movieschallenge.provider.ViewModelFactory
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
@@ -16,13 +16,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import org.koin.android.ext.android.inject
 
 
-class NotificationsFragment : Fragment() {
+class UbicacionesFragment : Fragment() {
 
-    private val binding: FragmentNotificationsBinding by lazy {
-        FragmentNotificationsBinding.inflate(layoutInflater, null, false)
+    private val binding: FragmentUbicacionesBinding by lazy {
+        FragmentUbicacionesBinding.inflate(layoutInflater, null, false)
     }
     private val viewModelFactory: ViewModelFactory by inject()
-    private val viewModel: NotificationsViewModel by viewModels { viewModelFactory }
+    private val viewModel: UbicacionesViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater,

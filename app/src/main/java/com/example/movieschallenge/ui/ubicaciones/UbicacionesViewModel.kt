@@ -1,4 +1,4 @@
-package com.example.movieschallenge.ui.notifications
+package com.example.movieschallenge.ui.ubicaciones
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,7 +10,7 @@ import com.example.movieschallenge.services.locations.LocationsContract
 import kotlinx.coroutines.launch
 import com.example.movieschallenge.models.Result
 
-class NotificationsViewModel(
+class UbicacionesViewModel(
     private val locationsContract: LocationsContract
 ) : ViewModel() {
 

@@ -1,6 +1,5 @@
-package com.example.movieschallenge.ui.dashboard
+package com.example.movieschallenge.ui.movies
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,7 @@ import com.example.movieschallenge.models.Result
 import com.example.movieschallenge.services.best_movies.BestMoviesContract
 import kotlinx.coroutines.launch
 
-class DashboardViewModel(
+class MoviesViewModel(
     private val bestMoviesContract: BestMoviesContract
 ) : ViewModel() {
     private var pageMostPopularMovies = 0
